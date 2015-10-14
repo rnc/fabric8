@@ -100,7 +100,6 @@
     <dependency>
       <groupId>com.fasterxml.jackson.module</groupId>
       <artifactId>jackson-module-jaxb-annotations</artifactId>
-      <version>${jackson2.version}</version>
       <optional>true</optional>
     </dependency>
 
@@ -125,14 +124,12 @@
     <dependency>
       <groupId>com.fasterxml.jackson.module</groupId>
       <artifactId>jackson-module-jsonSchema</artifactId>
-      <version>${jackson2.version}</version>
       <optional>true</optional>
     </dependency>
 
     <dependency>
       <groupId>javax.validation</groupId>
       <artifactId>validation-api</artifactId>
-      <version>${validation-api.version}</version>
       <optional>true</optional>
     </dependency>
 

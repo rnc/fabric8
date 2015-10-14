@@ -60,7 +60,6 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.12.2</version>
       <scope>compile</scope>
     </dependency>
 
@@ -88,7 +87,6 @@
     <dependency>
         <groupId>com.google.mockwebserver</groupId>
         <artifactId>mockwebserver</artifactId>
-        <version>${mockwebserver.version}</version>
         <scope>test</scope>
     </dependency>
 

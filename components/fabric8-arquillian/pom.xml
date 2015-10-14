@@ -70,12 +70,10 @@
         <dependency>
             <groupId>org.ops4j.pax.url</groupId>
             <artifactId>pax-url-aether</artifactId>
-            <version>${pax.url.version}</version>
         </dependency>
         <dependency>
             <groupId>org.fusesource.jansi</groupId>
             <artifactId>jansi</artifactId>
-            <version>${jansi.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
@@ -102,13 +100,11 @@
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-utils</artifactId>
-            <version>3.0.15</version>
         </dependency>
 
         <dependency>
             <groupId>xml-apis</groupId>
             <artifactId>xml-apis</artifactId>
-            <version>1.4.01</version>
         </dependency>
 
         <dependency>
@@ -120,7 +116,6 @@
         <dependency>
             <groupId>io.fabric8</groupId>
             <artifactId>openshift-client</artifactId>
-            <version>${kubernetes-client.version}</version>
             <type>test-jar</type>
             <scope>test</scope>
         </dependency>
@@ -128,14 +123,12 @@
         <dependency>
             <groupId>io.fabric8</groupId>
             <artifactId>openshift-mock</artifactId>
-            <version>${kubernetes-client.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>com.google.mockwebserver</groupId>
             <artifactId>mockwebserver</artifactId>
-            <version>${mockwebserver.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

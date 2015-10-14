@@ -50,7 +50,6 @@
     <dependency>
       <groupId>io.fabric8</groupId>
       <artifactId>fabric8-utils</artifactId>
-      <version>${project.version}</version>
     </dependency>
 
     <dependency>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
      Copyright 2005-2015 Red Hat, Inc.
@@ -72,6 +73,7 @@
     <properties>
 
         <!-- upstream vs redhat versions of dependencies goes here -->
+        <fuse.version>6.2.1.redhat-047</fuse.version>
         <activemq.version>5.11.0.redhat-621047</activemq.version>
         <camel.version>2.15.1.redhat-621047</camel.version>
         <cxf.version>3.0.4.redhat-621047</cxf.version>
@@ -84,7 +86,6 @@
         <jolokia.version>1.3.1</jolokia.version>
         <jgroups.version>3.4.4.Final</jgroups.version>
         <jsonschema2pojo.version>0.4.10</jsonschema2pojo.version>
-        <slf4j.version>1.7.7</slf4j.version>
         <snakeyaml.version>1.8</snakeyaml.version>
         <swagger.jaxrs.version>1.5.3</swagger.jaxrs.version>
         <vertx.version>2.1.6</vertx.version>
@@ -134,8 +135,6 @@
         <junit.version>4.12</junit.version>
         <kubernetes-client.version>1.3.49</kubernetes-client.version>
         <kubernetes-model.version>1.0.28</kubernetes-model.version>
-        <log4j.version>1.2.17</log4j.version>
-        <logback.version>1.1.3</logback.version>
         <lombok.version>1.16.6</lombok.version>
         <maven.enforcer.version>3.2.3</maven.enforcer.version>
         <maven.enforcer.plugin.version>1.4</maven.enforcer.plugin.version>
@@ -276,7 +275,35 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Spring -->
             <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter-web</artifactId>
+              <version>${spring.boot.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter-test</artifactId>
+              <version>${spring.boot.version}</version>
+            </dependency>
+
+            <!-- Fuse -->
+            <dependency>
+              <groupId>org.jboss.fuse.bom</groupId>
+              <artifactId>jboss-fuse-parent</artifactId>
+              <version>${fuse.version}</version>
+              <type>pom</type>
+              <scope>import</scope>
+            </dependency>
+
+          <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>servlet-api</artifactId>
                 <version>${servlet-api.version}</version>
@@ -324,6 +351,12 @@
             </dependency>
             <dependency>
                 <groupId>io.fabric8</groupId>
+                <artifactId>openshift-client</artifactId>
+                <version>${kubernetes-client.version}</version>
+                <type>test-jar</type>
+            </dependency>
+            <dependency>
+                <groupId>io.fabric8</groupId>
                 <artifactId>openshift-mock</artifactId>
                 <version>${kubernetes-client.version}</version>
                 <scope>test</scope>
@@ -340,6 +373,11 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+              <groupId>io.fabric8</groupId>
+              <artifactId>fabric8-apm</artifactId>
+              <version>${project.version}</version>
+            </dependency>
             <dependency>
               <groupId>io.fabric8</groupId>
               <artifactId>fabric8-apt</artifactId>
@@ -361,6 +399,12 @@
               <artifactId>fabric8-forge-core</artifactId>
               <version>${project.version}</version>
             </dependency>
+            <dependency>
+              <groupId>io.fabric8.forge</groupId>
+              <artifactId>utils</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>io.fabric8</groupId>
                 <artifactId>fabric8-cxf</artifactId>
@@ -446,6 +490,11 @@
                 <groupId>io.fabric8</groupId>
                 <artifactId>fabric8-vertx</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>io.fabric8</groupId>
+              <artifactId>kubernetes-codegen</artifactId>
+              <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.fabric8</groupId>
@@ -563,6 +612,11 @@
                 <type>xml</type>
                 <classifier>features</classifier>
             </dependency>
+            <dependency>
+              <groupId>org.apache.camel</groupId>
+              <artifactId>camel-commands-jolokia</artifactId>
+              <version>${camel.version}</version>
+            </dependency>
 
           <!-- Weld -->
             <dependency>
@@ -643,55 +697,6 @@
                 <version>${netty.version}</version>
             </dependency>
 
-            <!-- LogBack -->
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>${logback.version}</version>
-            </dependency>
-
-            <!-- Log4j -->
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-
-            <!-- commons logging -->
-            <!-- Slf4j -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-simple</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-jdk14</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-
-            <!-- Commons Logging -->
-            <dependency>
-                <groupId>commons-logging</groupId>
-                <artifactId>commons-logging-api</artifactId>
-                <version>1.1</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-logging</groupId>
-                <artifactId>commons-logging</artifactId>
-                <version>1.2</version>
-            </dependency>
-
             <!-- Others -->
             <dependency>
                 <groupId>org.apache.curator</groupId>
@@ -719,15 +724,6 @@
                 <groupId>org.ops4j.pax.url</groupId>
                 <artifactId>pax-url-aether</artifactId>
                 <version>${pax.url.version}</version>
-            </dependency>
-
-            <!-- Spring -->
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-framework-bom</artifactId>
-                <version>${spring.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
 
             <!-- Hawt stuff -->
@@ -866,7 +862,12 @@
               <artifactId>jackson-dataformat-yaml</artifactId>
               <version>${jackson2.version}</version>
             </dependency>
-
+            <dependency>
+              <groupId>com.fasterxml.jackson.module</groupId>
+              <artifactId>jackson-module-jsonSchema</artifactId>
+              <version>${jackson2.version}</version>
+              <optional>true</optional>
+            </dependency>
 
             <dependency>
                 <groupId>org.yaml</groupId>
@@ -879,18 +880,17 @@
                 <artifactId>json</artifactId>
                 <version>${json.version}</version>
             </dependency>
+            <dependency>
+              <groupId>org.jsonschema2pojo</groupId>
+              <artifactId>jsonschema2pojo-core</artifactId>
+              <version>${jsonschema2pojo.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.google.mockwebserver</groupId>
                 <artifactId>mockwebserver</artifactId>
                 <version>${mockwebserver.version}</version>
                 <scope>test</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
             </dependency>
 
             <!-- CXF -->
@@ -1201,16 +1201,6 @@
              </dependency>
              <dependency>
                  <groupId>org.apache.cxf</groupId>
-                 <artifactId>cxf-rt-rs-client</artifactId>
-                 <version>${cxf.version}</version>
-             </dependency>
-             <dependency>
-                 <groupId>org.apache.cxf</groupId>
-                 <artifactId>cxf-rt-rs-service-description</artifactId>
-                 <version>${cxf.version}</version>
-             </dependency>
-             <dependency>
-                 <groupId>org.apache.cxf</groupId>
                  <artifactId>cxf-testutils</artifactId>
                  <version>${cxf.version}</version>
              </dependency>
@@ -1239,6 +1229,11 @@
                 <version>${arquillian.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+              <groupId>org.jboss.arquillian.container</groupId>
+              <artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
+              <version>1.0.0.CR8</version>
             </dependency>
 
             <dependency>
@@ -1328,7 +1323,79 @@
                 <scope>system</scope>
                 <systemPath>${java.home}/../lib/tools.jar</systemPath>
             </dependency>
-        </dependencies>
+
+
+            <!-- Maven -->
+            <dependency>
+              <groupId>org.apache.maven</groupId>
+              <artifactId>maven-core</artifactId>
+              <!-- maven-plugin-testing-harness only works with this version of maven -->
+              <version>3.0.5</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.maven</groupId>
+              <artifactId>maven-embedder</artifactId>
+              <!-- maven-plugin-testing-harness only works with this version of maven -->
+              <version>3.0.5</version>
+            </dependency>
+            <!-- maven plugin dependencies -->
+            <dependency>
+              <groupId>org.apache.maven</groupId>
+              <artifactId>maven-plugin-api</artifactId>
+              <version>3.0.4</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.maven</groupId>
+              <artifactId>maven-artifact</artifactId>
+              <version>3.0.4</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.maven</groupId>
+              <artifactId>maven-compat</artifactId>
+              <version>3.0.4</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.maven</groupId>
+              <artifactId>maven-settings</artifactId>
+              <version>3.0.4</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.maven.plugin-tools</groupId>
+              <artifactId>maven-plugin-annotations</artifactId>
+              <version>3.2</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.maven.plugin-testing</groupId>
+              <artifactId>maven-plugin-testing-harness</artifactId>
+              <!-- We seem to have sonatype - not eclipse - aether -->
+              <!-- on the classpath. So the max version we can use is 2.1 -->
+              <version>2.1</version>
+              <scope>test</scope>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-dependency-plugin</artifactId>
+              <version>2.10</version>
+            </dependency>
+
+            <dependency>
+              <groupId>javax.validation</groupId>
+              <artifactId>validation-api</artifactId>
+              <version>${validation-api.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>javax.inject</groupId>
+              <artifactId>javax.inject</artifactId>
+              <version>1</version>
+            </dependency>
+            <dependency>
+              <groupId>javax</groupId>
+              <artifactId>javaee-api</artifactId>
+              <version>7.0</version>
+            </dependency>
+
+
+          </dependencies>
     </dependencyManagement>
 
     <modules>
@@ -1494,6 +1561,13 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
           <version>${maven.enforcer.plugin.version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.commonjava.maven.enforcer</groupId>
+              <artifactId>enforce-managed-deps-rule</artifactId>
+              <version>1.0</version>
+            </dependency>
+          </dependencies>
           <executions>
             <execution>
               <id>enforce-versions</id>
@@ -1505,6 +1579,22 @@
                   <requireMavenVersion>
                     <version>${maven.enforcer.version}</version>
                   </requireMavenVersion>
+                </rules>
+              </configuration>
+            </execution>
+            <execution>
+              <id>enforce-standards</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <phase>process-classes</phase>
+              <configuration>
+                <fail>${enforceStandards}</fail>
+                <rules>
+                  <requireManagedDeps implementation="org.commonjava.maven.enforcer.rule.EnforceManagedDepsRule">
+                    <checkProfiles>false</checkProfiles>
+                    <failOnViolation>${enforceManagedDeps}</failOnViolation>
+                  </requireManagedDeps>
                 </rules>
               </configuration>
             </execution>
@@ -1524,6 +1614,20 @@
             <useAgent>true</useAgent>
           </configuration>
         </plugin>
+        <plugin>
+        <groupId>org.commonjava.maven.plugins</groupId>
+        <artifactId>project-sources-maven-plugin</artifactId>
+        <version>0.3</version>
+        <executions>
+          <execution>
+            <id>project-sources-archive</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>archive</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       </plugins>
     </build>
 
@@ -1536,8 +1640,6 @@
         </profile>
         <profile>
             <id>distro</id>
-            <modules>
-            </modules>
         </profile>
         <profile>
             <id>release</id>

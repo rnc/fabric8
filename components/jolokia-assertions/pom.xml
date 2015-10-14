@@ -43,7 +43,12 @@
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpcore</artifactId>
+    </dependency>
 
+    
     <!-- testing -->
     <dependency>
       <groupId>org.jolokia</groupId>
